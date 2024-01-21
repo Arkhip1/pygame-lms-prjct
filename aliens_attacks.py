@@ -6,7 +6,7 @@ from stats import Statistics
 from Scores import Scores
 
 
-def run():
+def run():  # Функция запуска игры
     pg.init()
     x, y = 700, 700
     screen = pg.display.set_mode((x, y))

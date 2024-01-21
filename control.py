@@ -8,7 +8,7 @@ from bullet import Bullet
 from alien import Alien
 
 
-def events(screen, ship, bullets):
+def events(screen, ship, bullets):  # Управление
     for event in pg.event.get():
         if event.type == pg.QUIT:
             sys.exit()
@@ -37,7 +37,7 @@ def update(bg_pic, screen, stats, sc, ship, aliens, bullets):
     pg.display.flip()
 
 
-def update_bullets(screen, stats, sc, aliens, bullets):
+def update_bullets(screen, stats, sc, aliens, bullets):  # Движение снарядов
     bullets.update()
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
@@ -55,7 +55,7 @@ def update_bullets(screen, stats, sc, aliens, bullets):
         create_swarm(screen, aliens)
 
 
-def ship_destroyed(stats, screen, sc, ship, aliens, bullets):
+def ship_destroyed(stats, screen, sc, ship, aliens, bullets):  # Уничтожение космолета
     if stats.lives_left > 0:
         stats.lives_left -= 1
         sc.image_lives()
@@ -76,7 +76,7 @@ def update_aliens(stats, screen, sc, ship, aliens, bullets):  # Движение
     chek_aliens(stats, screen, sc, ship, aliens, bullets)
 
 
-def chek_aliens(stats, screen, sc, ship, aliens, bullets):
+def chek_aliens(stats, screen, sc, ship, aliens, bullets):  # Действия пришельцев
     screen_rect = screen.get_rect()
     for alien in aliens.sprites():
         if alien.rect.bottom >= screen_rect.bottom:

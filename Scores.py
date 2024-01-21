@@ -14,20 +14,20 @@ class Scores():  # Вывод счёта
         self.image_hi_score()
         self.image_lives()
 
-    def image_score(self):
+    def image_score(self):  # Отображение текущего счёта
         self.score_img = self.font.render(str(self.stats.score), True, self.text_color, (0, 0, 0))
         self.score_rect = self.score_img.get_rect()
         self.score_rect.right = self.screen_rect.right - 40
         self.score_rect.top = 20
 
-    def image_hi_score(self):
+    def image_hi_score(self):  # Отображение рекорда
         self.hi_score_image = self.font.render(str(self.stats.hi_score), True, self.text_color,
                                                (0, 0, 0))
         self.hi_score_rect = self.hi_score_image.get_rect()
         self.hi_score_rect.centerx = self.screen_rect.centerx
         self.hi_score_rect.top = self.screen_rect.top + 20
 
-    def image_lives(self):
+    def image_lives(self):  # Отображение оставшихся жизней
         self.lives = Group()
         for live_num in range(self.stats.lives_left):
             ship = Spaceship(self.screen)
@@ -35,7 +35,7 @@ class Scores():  # Вывод счёта
             ship.rect.y = 20
             self.lives.add(ship)
 
-    def show_score(self):
+    def show_score(self):  # Отображение текущего счёта
         self.screen.blit(self.score_img, self.score_rect)
         self.screen.blit(self.hi_score_image, self.hi_score_rect)
         self.lives.draw(self.screen)

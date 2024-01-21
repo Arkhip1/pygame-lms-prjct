@@ -8,7 +8,7 @@ class Spaceship(Sprite):
         super(Spaceship, self).__init__()
         self.screen = screen
         self.image = pg.image.load('assts/ship.png')
-        self.image = pg.transform.scale(self.image, (75, 75))
+        self.image = pg.transform.scale(self.image, (40, 40))
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
         self.rect.centerx = self.screen_rect.centerx
@@ -17,10 +17,10 @@ class Spaceship(Sprite):
         self.mright = False
         self.mleft = False
 
-    def rendering(self):
+    def rendering(self):  # Отображение космолета
         self.screen.blit(self.image, self.rect)
 
-    def update(self):
+    def update(self):  # Движение космолета
         if self.mright and self.rect.right < self.screen_rect.right:
             self.center += 1.5
         elif self.mleft and self.rect.left > 0:
