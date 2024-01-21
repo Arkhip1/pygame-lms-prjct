@@ -1,22 +1,32 @@
 import pygame as pg
-import sys
+import control
+from spaceship import Spaceship
+from pygame.sprite import Group
+from stats import Statistics
+from Scores import Scores
 
 
 def run():
     pg.init()
-    screen = pg.display.set_mode((1200, 800))
+    x, y = 700, 700
+    screen = pg.display.set_mode((x, y))
     pg.display.set_caption("Пришельцы атакуют")
-    bg_pic = pg.image.load('bg_pic.jpg')
-    x, y = 1200, 800
+    bg_pic = pg.image.load('assts/bg_picture.jpeg')
+    bg_pic = pg.transform.scale(bg_pic, (x, y))
+    ship = Spaceship(screen)
+    bullets = Group()
+    aliens = Group()
+    control.create_swarm(screen, aliens)
+    stats = Statistics()
+    sc = Scores(screen, stats)
 
     while True:
-        for event in pg.event.get():
-            if event.type == pg.QUIT:
-                sys.exit()
-
-        new_bg_pic = pg.transform.scale(bg_pic, (x, y))
-        screen.blit(new_bg_pic, (0, 0))
-        pg.display.flip()
+        control.events(screen, ship, bullets)
+        if stats.run_game:
+            ship.update()
+            control.update(bg_pic, screen, stats, sc, ship, aliens, bullets)
+            control.update_bullets(screen, stats, sc, aliens, bullets)
+            control.update_aliens(stats, screen, sc, ship, aliens, bullets)
 
 
 run()
